@@ -1,1 +1,1 @@
-from .core import *
+from .core import Rede, REDIS_2
