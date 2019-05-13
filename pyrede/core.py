@@ -62,6 +62,8 @@ class Rede:
 
             if REDIS_2:
                 element, expire_timestmap = pop_result
+                if isinstance(expire_timestmap, bytes):
+                    expire_timestmap = expire_timestmap.decode()
                 expire_timestmap = float(expire_timestmap)
             else:
                 element, expire_timestmap = pop_result[0]
