@@ -13,5 +13,9 @@ install:
   - pip install redis==$REDIS_VERSION
   - python setup.py install
 
+# Setting up Databases and Services
+services:
+  - redis-server
+
 # command to run tests
 script: pytest
