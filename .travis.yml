@@ -1,21 +1,23 @@
+dist: xenial
+sudo: false
 language: python
-
+cache: pip
 python:
-  - "3.5"
-  - "3.6"
+  - 3.7
+  - 3.6
+
+before_install:
+  - wget http://download.redis.io/releases/redis-5.0.3.tar.gz && mkdir redis_install && tar -xvzf redis-5.0.3.tar.gz -C redis_install && cd redis_install/redis-5.0.3 && make && src/redis-server --daemonize yes && cd ../..
+  - redis-cli info
 
 env:
   - REDIS_VERSION=2.10.6
   - REDIS_VERSION=3.2.1
 
-# command to install dependencies
 install:
   - pip install redis==$REDIS_VERSION
   - python setup.py install
+  - "if [[ $TEST_PYCODESTYLE == '1' ]]; then pip install pycodestyle; fi"
+  - "if [[ $TEST_HIREDIS == '1' ]]; then pip install hiredis; fi"
 
-# Setting up Databases and Services
-services:
-  - redis-server
-
-# command to run tests
 script: pytest
