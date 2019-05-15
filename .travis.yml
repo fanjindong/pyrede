@@ -3,7 +3,6 @@ sudo: false
 language: python
 cache: pip
 python:
-  - 3.7
   - 3.6
 
 before_install:
@@ -17,7 +16,5 @@ env:
 install:
   - pip install redis==$REDIS_VERSION
   - python setup.py install
-  - "if [[ $TEST_PYCODESTYLE == '1' ]]; then pip install pycodestyle; fi"
-  - "if [[ $TEST_HIREDIS == '1' ]]; then pip install hiredis; fi"
 
 script: pytest
