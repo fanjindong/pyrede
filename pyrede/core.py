@@ -1,15 +1,28 @@
-# Insert your code here.
 import time
 
 try:
     import redis
+
     REDIS_2 = redis.__version__.startswith("2.")
 except:
     REDIS_2 = False
 
 
 class Rede:
+    """
+    The rede is an effective 'snooze button' for events,
+    you push an event into it along (for future referance) and in how many seconds you want it back,
+    and poll whenever you want the elements back. only expired elements would pop out.
+    """
+
     def __init__(self, redis, name):
+        """
+        :param redis: a Redis client object
+        :type redis: object
+        :param name: Set the collection of elements to name
+        :type name: str
+        """
+
         self._redis = redis
         self._name = name
 
@@ -38,7 +51,7 @@ class Rede:
         :param elements:
         :type elements:
         :return: The number of elements removed from the sorted set, not including non existing elements.
-        :rtype:
+        :rtype: list
         """
 
         return self._redis.zrem(self._name, *elements)
@@ -82,25 +95,25 @@ class Rede:
         LOOK dehydrator_name element
         Show the ttl corresponding with element and without removing it from the dehydrator.
 
-        :param element:
-        :type element:
+        :param element: element
+        :type element: str
         :return: The ttl represented by element on success, None if key is empty or not a dehydrator, or element does not exist.
-        :rtype:
+        :rtype: float
         """
-        expire_timestamp = self._redis.zscore(self._name, element) # None or float
+        expire_timestamp = self._redis.zscore(self._name, element)  # None or float
         if expire_timestamp is None:
             return None
-        return max(0, expire_timestamp-time.time())
+        return max(0, expire_timestamp - time.time())
 
     def ttn(self):
         """
         Show the time left (in seconds) until the next element will expire.
 
         :return: int representing the number of seconds until next element will expire. Null if dehydrator_name does not contain a dehydrator.
-        :rtype:
+        :rtype: float
         """
-        result = self._redis.zrange(self._name, 0, 0, withscores=True) #[] or [('a', 1.0)]
+        result = self._redis.zrange(self._name, 0, 0, withscores=True)  # [] or [('a', 1.0)]
         if result is []:
             return None
         _, expire_timestamp = result[0]
-        return max(0, expire_timestamp-time.time())
+        return max(0, expire_timestamp - time.time())
