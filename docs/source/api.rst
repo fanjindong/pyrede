@@ -3,7 +3,7 @@
 API Reference
 =============
 
-.. module:: pyrede
+.. module:: pyrede.core
 
 This part of the documentation covers all the interfaces of Pyrede. For
 parts where Pyrede depends on external libraries, we document the most
