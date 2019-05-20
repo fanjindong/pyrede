@@ -12,4 +12,4 @@ important right here and provide links to the canonical documentation.
 
 .. autoclass:: Rede
     :members:
-    :undoc-members:
+
