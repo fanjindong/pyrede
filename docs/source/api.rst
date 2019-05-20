@@ -11,7 +11,7 @@ important right here and provide links to the canonical documentation.
 Rede
 --------------
 
-.. autoclass:: pyrede.Rede
+.. automodule:: pyrede.core
     :members:
     :undoc-members:
     :private-members:
