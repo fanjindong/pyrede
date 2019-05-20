@@ -8,11 +8,12 @@ except:
     REDIS_2 = False
 
 
-class Rede:
+class Rede(object):
     """
     The rede is an effective 'snooze button' for events,
     you push an event into it along (for future referance) and in how many seconds you want it back,
     and poll whenever you want the elements back. only expired elements would pop out.
+
     """
 
     def __init__(self, redis, name):
