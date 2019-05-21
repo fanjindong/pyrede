@@ -131,4 +131,4 @@ setup(
 )
 
 # python3.6 setup.py sdist
-# twine upload dist/pycached-0.0.4.tar.gz
+# twine upload dist/pyrede-0.0.1.tar.gz

@@ -20,7 +20,9 @@ class Rede(object):
         :param name: Set the collection of elements to name
         :type name: str
         """
-
+        redis_version = redis.info()['redis_version']  # 'redis_version': '5.0.11'
+        if redis_version < '5.0.0':
+            raise ValueError("Redis version must be >= 5.0.0")
         self._redis = redis
         self._name = name
 
