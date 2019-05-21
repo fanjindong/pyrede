@@ -4,6 +4,30 @@
 ![](https://img.shields.io/travis/com/fanjindong/pyrede/master.svg)
 ![](https://img.shields.io/github/last-commit/fanjindong/pyrede.svg)
 
-<h1>  pyrede - The <img src="https://upload.wikimedia.org/wikipedia/en/6/6b/Redis_Logo.svg" alt="redis" height="47" align="top"/> Element Dehydration Python Module</h1>
+<h1>  pyrede - The <img src="https://upload.wikimedia.org/wikipedia/en/6/6b/Redis_Logo.svg" alt="redis" height="47" align="top"/> Element Snooze Python Module</h1>
 
-:rocket:**TL;DR - A Dehydrator is a fancy delayed queue, see what commands this module provides [HERE](docs/Commands.md)**
+:rocket:**A Rede is a fancy snooze delayed queue**
+
+
+**Usage**
+
+The Rede is an effective 'snooze button' for events,
+you push an event into it along (for future referance) and in how many seconds you want it back,
+and poll whenever you want the elements back. only expired elements would pop out.
+
+
+```
+   import pyrede
+   import redis
+
+   rede = pyrede.Rede(redis.Redis(), "demo")
+
+   rede.push("123", 1)
+   rede.push("456", 1)
+   rede.push("789", 3)
+
+   time.sleep(1)
+
+   rede.poll()
+```
+output-> [b"123", b"456"]
