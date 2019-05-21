@@ -20,7 +20,7 @@ and poll whenever you want the elements back. only expired elements would pop ou
    import pyrede
    import redis
 
-   rede = pyrede.Rede(redis.Redis(), "demo")
+   rede = pyrede.Rede(redis.Redis(decode_responses=True), "demo")
 
    rede.push("123", 1)
    rede.push("456", 1)
@@ -30,4 +30,4 @@ and poll whenever you want the elements back. only expired elements would pop ou
 
    rede.poll()
 ```
-output-> [b"123", b"456"]
+output-> ["123", "456"]

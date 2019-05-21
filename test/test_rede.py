@@ -4,7 +4,7 @@ from redis import Redis
 
 from pyrede import Rede
 
-rds = Redis()
+rds = Redis(decode_responses=True)
 rde = Rede(rds, "demo")
 
 
@@ -25,4 +25,4 @@ def test_Rede():
 
     rde.push("c", 2)
     time.sleep(2)
-    assert rde.poll() == [b"b", b"c"]
+    assert rde.poll() == ["b", "c"]

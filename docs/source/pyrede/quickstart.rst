@@ -30,7 +30,7 @@ Begin by importing the Pyrede module and create a redis instance.
     import pyrede
     import redis
 
-    rede = pyrede.Rede(redis.Redis(), "demo") # Set the collection of elements to demo
+    rede = pyrede.Rede(redis.Redis(decode_responses=True), "demo") # Set the collection of elements to demo
 
 
 PUSH
