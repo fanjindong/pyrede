@@ -65,13 +65,13 @@ Pull and return all the expired elements in ``demo``.
 
 ***Return Value***
 
-List of all expired elements on success, or an empty list if no elements are expired, the key is empty or the key contains something other the a dehydrator.
+List of all expired elements on success, or an empty list if no elements are expired.
 
 
 LOOK
 ------
 
-Show the element corresponding and without removing it from the dehydrator.
+Show the element corresponding and without removing it from the rede.
 
     >>> rede.push("a", 1)
     >>> rede.look("a")

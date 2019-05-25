@@ -13,7 +13,7 @@ from setuptools import find_packages, setup, Command
 
 # Package meta-data.
 NAME = 'pyrede'
-DESCRIPTION = 'A Redis dehydrator module.'
+DESCRIPTION = 'A Redis snooze delayed queue module.'
 URL = 'https://github.com/fanjindong/pyrede'
 EMAIL = '765912710@qq.com'
 AUTHOR = 'Jindong Fan'

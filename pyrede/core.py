@@ -17,7 +17,7 @@ class Rede(object):
 
         :param redis: a Redis client object
         :type redis: object
-        :param name: Set the collection of elements to name
+        :param name: Set the rede of elements to name
         :type name: str
         """
         redis_version = redis.info()['redis_version']  # 'redis_version': '5.0.11'
@@ -28,14 +28,14 @@ class Rede(object):
 
     def push(self, element, ttl):
         """
-        Push an element into the dehydrator for ttl seconds, marking it with element_id
-        Note: if the key does not exist this command will create a Dehydrator on it.
+        Push an element into the rede for ttl seconds, marking it with element_id
+        Note: if the key does not exist this command will create a Rede on it.
 
-        :param element: Push an element into the dehydrator
+        :param element: Push an element into the rede
         :type element: str
-        :param ttl: Push an element into the dehydrator for ttl seconds
+        :param ttl: Push an element into the rede for ttl seconds
         :type ttl: int
-        :return: The return value of ZADD varies based on the mode specified. With no options, ZADD returns the number of new elements added to the sorted set.
+        :return: 1 if new element, 0 if update element ttl.
         :rtype: int
         """
 
@@ -46,7 +46,7 @@ class Rede(object):
 
     def pull(self, *elements):
         """
-        Pull the element, remove it from the dehydrator before it expires.
+        Pull the element, remove it from the rede before it expires.
 
         :param elements:
         :type elements:
@@ -58,10 +58,10 @@ class Rede(object):
 
     def poll(self):
         """
-        POLL dehydrator_name
-        Pull and return all the expired elements in dehydrator_name.
+        POLL rede
+        Pull and return all the expired elements in rede.
 
-        :return: List of all expired elements on success, or an empty list if no elements are expired, the key is empty or the key contains something other the a dehydrator.
+        :return: List of all expired elements on success, or an empty list if no elements are expired.
         :rtype: list
         """
         elements = []
@@ -92,12 +92,12 @@ class Rede(object):
 
     def look(self, element):
         """
-        LOOK dehydrator_name element
-        Show the ttl corresponding with element and without removing it from the dehydrator.
+        LOOK rede element
+        Show the ttl corresponding with element and without removing it from the rede.
 
         :param element: element
         :type element: str
-        :return: The ttl represented by element on success, None if key is empty or not a dehydrator, or element does not exist.
+        :return: The ttl represented by element on success, None if rede is empty or element does not exist.
         :rtype: float
         """
         expire_timestamp = self._redis.zscore(self._name, element)  # None or float
@@ -109,7 +109,7 @@ class Rede(object):
         """
         Show the time left (in seconds) until the next element will expire.
 
-        :return: int representing the number of seconds until next element will expire. Null if dehydrator_name does not contain a dehydrator.
+        :return: int representing the number of seconds until next element will expire. None if rede is empty or rede does not exist.
         :rtype: float
         """
         result = self._redis.zrange(self._name, 0, 0, withscores=True)  # [] or [('a', 1.0)]
