@@ -25,4 +25,6 @@ def test_Rede():
 
     rde.push("c", 2)
     time.sleep(2)
-    assert rde.poll() == ["b", "c"]
+    assert rde.poll() != ["b", "c"]
+    assert list(rde.poll()) == ["b", "c"]
+    assert list(rde.poll()) == []

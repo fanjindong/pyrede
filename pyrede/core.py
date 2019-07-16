@@ -61,10 +61,9 @@ class Rede(object):
         POLL rede
         Pull and return all the expired elements in rede.
 
-        :return: List of all expired elements on success, or an empty list if no elements are expired.
+        :return: generator of all expired elements on success, or an empty generator if no elements are expired.
         :rtype: list
         """
-        elements = []
         while True:
             if REDIS_2:
                 pop_result: list = self._redis.execute_command("ZPOPMIN", self._name, count=1)  # [] or ['a', '1.0']
@@ -87,8 +86,8 @@ class Rede(object):
                 else:
                     self._redis.zadd(self._name, {element: expire_timestmap})
                 break
-            elements.append(element)
-        return elements
+            yield element
+
 
     def look(self, element):
         """

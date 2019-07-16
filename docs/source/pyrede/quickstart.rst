@@ -60,12 +60,12 @@ Pull and return all the expired elements in ``demo``.
 
     >>> time.sleep(1)
 
-    >>> rede.poll()
+    >>> list(rede.poll())
     ["a", "b"]
 
 ***Return Value***
 
-List of all expired elements on success, or an empty list if no elements are expired.
+generator of all expired elements on success, or an empty generator if no elements are expired.
 
 
 LOOK

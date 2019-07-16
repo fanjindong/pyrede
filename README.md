@@ -28,6 +28,6 @@ and poll whenever you want the elements back. only expired elements would pop ou
 
    time.sleep(1)
 
-   rede.poll()
+   list(rede.poll())
 ```
 output-> ["123", "456"]
